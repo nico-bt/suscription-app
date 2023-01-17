@@ -26,7 +26,7 @@ router.post("/session", checkAuth, async (req, res) => {
                 payment_method_types: ["card"],
                 line_items: [{ price: req.body.priceId, quantity: 1 },],
                 success_url: "http://localhost:3000/articles",
-                cancel_url: "http://localhost:3000/articles-plans",
+                cancel_url: "http://localhost:3000/articles-plan",
                 customer: user.customerStripeId
             },
             {

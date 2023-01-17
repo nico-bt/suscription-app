@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import LandingPage from './pages/LandingPage';
 import Articles from './pages/Articles';
 import ProtectedRoute from './components/routes/ProtectedRoute';
+import ArticlesPlan from './pages/ArticlePlan';
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
         <Route path='/articles' element={<ProtectedRoute />}> 
           <Route path='/articles' element={<Articles />} />
         </Route>
+        
+        <Route path='/articles-plan' element={<ProtectedRoute />}> 
+          <Route path='/articles-plan' element={<ArticlesPlan />} />
+        </Route>
+
     </Routes>
   </BrowserRouter>
   );
