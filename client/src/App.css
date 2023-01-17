@@ -3,3 +3,23 @@ body{
   margin: 0;
   padding: 0;
 }
+
+.hoverCard{
+  background: linear-gradient(rgb(166, 166, 166), white);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.hoverCard:hover{
+  transform: scale(104%);
+}
+
+.modal-90w { 
+  max-width: 90% !important; 
+}
+
+@media (min-width: 900px) {
+  .modal-90w {
+    max-width: 1200px !important;
+  }
+}
