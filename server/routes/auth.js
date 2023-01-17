@@ -96,6 +96,7 @@ router.post("/login", async (req, res) => {
 })
 
 // LOGIN api/auth/me
+// checkAuth middleware adds id to req.user
 // --------------------------------------------------------------------------------------------
 router.get("/me", checkAuth, async(req, res) => {
     const id = req.user
