@@ -8,7 +8,9 @@ const stripe = new Stripe(process.env.STRIPE_CLAVE_SECRETA, {apiVersion: "2022-1
 
 const router = express.Router()
 
-router.get("/articles", checkAuth, async (req, res) => {
+// GET all articles acording to the suscription "plan" -- Base url /api/articles
+// --------------------------------------------------------------------------------------
+router.get("/", checkAuth, async (req, res) => {
     try {
         const user = await User.findById(req.user)
         
