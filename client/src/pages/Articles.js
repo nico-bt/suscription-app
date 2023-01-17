@@ -44,7 +44,7 @@ function Articles() {
     setIsLoading(true)
     try{
         const {data: response} = await axios.get("/api/articles");
-        console.log(response)
+        /* console.log(response) */
         setArticles(response)
         setIsLoading(false)
     } catch(err) {
@@ -69,7 +69,7 @@ function Articles() {
         <CardsContainer>
           {articles.length && 
             articles.map(item => (
-              <ClickeableCard item={item}>
+              <ClickeableCard item={item} key={item._id}>
                 <Card.Img variant="top" src={item.imageUrl} />
                 
                 <Card.Body className='d-flex align-items-center justify-content-center'>
@@ -84,7 +84,7 @@ function Articles() {
       {!error && !isLoading && !articles.length && 
         <NoArticlesContainer>
             <ErrorHeader>You don't have access yet</ErrorHeader>
-            <Link to={"/articles-plans"}>Buy a plan</Link>
+            <Link to={"/articles-plan"}>Buy a plan</Link>
         </NoArticlesContainer>
       }
       
