@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { Modal, Button, InputGroup, FormControl, Alert } from "react-bootstrap";
-// import {useNavigate} from "react-router-dom"
-// import { UserContext } from '../../context/UserContext';
+import {useNavigate} from "react-router-dom"
+import { UserContext } from '../context/UserContext';
 
 
 function ModalComp({ text, variant }) {
@@ -11,9 +11,9 @@ function ModalComp({ text, variant }) {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-//   const navigate = useNavigate()
+  const navigate = useNavigate()
 
-//   const [user, setUser]= useContext(UserContext)
+  const [user, setUser]= useContext(UserContext)
 
   const handleClose = () => {
     setShow(false)
@@ -26,50 +26,48 @@ function ModalComp({ text, variant }) {
 
   const handleClick = async (e) => {
     e.preventDefault()
-    // if(!email || !password) {
-    //   setError("Please fill in both fields")
-    //   return
-    // } 
+
+    if(!email || !password) {
+      setError("Please fill in both fields")
+      return
+    } 
     
-    // try {
-    //   let response
+    try {
+      let response
       
-    //   if(text === "Signup") {
-    //     response = await axios.post("/auth/signup", { email, password })
-    //   } else {
-    //     response = await axios.post("/auth/login", { email, password })
-    //   }
+      if(text === "Signup") {
+        response = await axios.post("/api/auth/signup", { email, password })
+      } else {
+        response = await axios.post("/api/auth/login", { email, password })
+      }
 
-    //   if(response.data) {
-    //     const {id, email, customerStripeId, token} = response.data
+      if(response.data) {
+        const {id, email, customerStripeId, token} = response.data
         
-    //     localStorage.setItem("token", token)
-    //     // Set the token in the header for all the axios requests
-    //     axios.defaults.headers.common["authorization"] = `Bearer ${token}`
+        localStorage.setItem("token", token)
+        // Set the token in the header for all the axios requests
+        axios.defaults.headers.common["authorization"] = `Bearer ${token}`
       
-    //     setUser({
-    //       data: {id, email, customerStripeId},
-    //       error: null,
-    //       loading: false
-    //     })
+        setUser({
+          data: {id, email, customerStripeId},
+          error: null,
+          loading: false
+        })
 
-    //     setError("")
-    //     setEmail("")
-    //     setPassword("")
+        setError("")
+        setEmail("")
+        setPassword("")
         
-    //     navigate("/articles")
-    //   }
+        navigate("/articles")
+      }
 
-    // } catch (err) {
-    //   // check type for avoid typescript error and if there is multiple errors show only one
-    //   if (axios.isAxiosError(err)) {
-    //     if(Array.isArray(err.response?.data)){
-    //       setError(err.response?.data[0])
-    //     } else {
-    //       setError(err.response?.data || err.message) 
-    //     }
-    //   }
-    // }
+    } catch (err) {
+      if(Array.isArray(err.response?.data)){
+        setError(err.response?.data[0])
+      } else {
+        setError(err.response?.data || err.message) 
+      }
+    }
   }
 
   return (

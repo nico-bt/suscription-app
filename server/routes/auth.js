@@ -84,7 +84,8 @@ router.post("/login", async (req, res) => {
                 return res.json({
                     id: user._id,
                     email: user.email, 
-                    token
+                    token,
+                    customerStripeId: user.customerStripeId
                 });
             } else {
                 return res.status(400).json("Wrong credentials")
