@@ -12,7 +12,7 @@ app.get("/", (req, res)=>{
 })
 
 app.use("/api/auth", require("./routes/auth"))
-// app.use("/subs", subscriptionRoute)
+app.use("/api/subs", require("./routes/subscription"))
 // app.use(articlesRoute)
 
 const main = async () => {
