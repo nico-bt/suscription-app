@@ -13,7 +13,7 @@ function ClickeableCard( {item, children} ) {
       </Card>
 
       <Modal
-      style={{"minWidth":"90%"}}
+        style={{"minWidth":"90%"}}
         show={show}
         onHide={() => setShow(false)}
         dialogClassName="modal-90w"
@@ -27,7 +27,7 @@ function ClickeableCard( {item, children} ) {
         <img src={item.imageUrl} alt={item.title} style={{"maxWidth":"75%", "margin":"0 auto"}} />
         <Modal.Body>
             <div style={{"padding":"1.5rem"}}>
-                {item.content.split("</p>").map(line => <p>{line}</p>)}
+                {item.content.split("</p>").map((line, index) => <p key={item._id + index}>{line}</p>)}
             </div>
         </Modal.Body>
       </Modal>
