@@ -12,7 +12,6 @@ const HeroComponent = styled.header`
     padding: 5rem 0;
     height: 90vh;
     @media(max-width: 500px) {
-        width:100%;
         padding: 0.5rem;
     }
 `
@@ -20,25 +19,27 @@ const HeaderContainer = styled.div`
     background-color: rgba(108, 0, 127, 0.8);
     padding: 3rem;
     color: white;
-    max-width: 32.5rem;
+    max-width: 30rem;
     border-radius: 6px;
     @media(max-width: 500px) {
-        padding: 1rem;
+        padding: 1.75rem;
     }
 `
 const Heading = styled.h1`
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 2.5rem;
+    letter-spacing: 2px;
     @media(max-width: 500px) {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
     `
 const SubHeading = styled.h3`
     margin: 1rem 0;
     font-weight: 400;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+    line-height: 1.6;
     @media(max-width: 500px) {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 `
 
@@ -48,8 +49,8 @@ function Hero() {
         <Container>
             <HeaderContainer>
                 <Heading>Feed your mind</Heading>
+                <SubHeading>Your mind is more permeable than you think, be careful of what you consume.</SubHeading>
                 <SubHeading>Grow and learn by reading some of the top articles. </SubHeading>
-                <SubHeading>Your mind is more permeable than you think, be careful of what you consume</SubHeading>
                 <div className='d-flex justify-content-center mt-5'>
                     <ModalComp text="Signup" variant="warning"/>
                     <ModalComp text="Login" variant="success"/>
