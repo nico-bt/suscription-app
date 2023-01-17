@@ -13,7 +13,7 @@ app.get("/", (req, res)=>{
 
 app.use("/api/auth", require("./routes/auth"))
 app.use("/api/subs", require("./routes/subscription"))
-// app.use(articlesRoute)
+app.use("/api/articles", require("./routes/articles"))
 
 const main = async () => {
     try {
