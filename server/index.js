@@ -2,6 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require('cors')
 require('dotenv').config()
+const path = require("path")
 
 const app = express()
 app.use(express.json())
@@ -21,6 +22,14 @@ app.use(limiter)
 app.use("/api/auth", require("./routes/auth"))
 app.use("/api/subs", require("./routes/subscription"))
 app.use("/api/articles", require("./routes/articles"))
+
+// For production - Serving the frontend
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "..", "client", "build")))
+    app.get("*", (req, res)=>{
+        res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+    })
+}
 
 const main = async () => {
     try {

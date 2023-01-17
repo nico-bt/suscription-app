@@ -25,8 +25,8 @@ router.post("/session", checkAuth, async (req, res) => {
                 mode: "subscription",
                 payment_method_types: ["card"],
                 line_items: [{ price: req.body.priceId, quantity: 1 },],
-                success_url: "http://localhost:3000/articles",
-                cancel_url: "http://localhost:3000/articles-plan",
+                success_url: "http://suscription-app-production.up.railway.app/articles",
+                cancel_url: "http://suscription-app-production.up.railway.app/articles-plan",
                 customer: user.customerStripeId
             },
             {
