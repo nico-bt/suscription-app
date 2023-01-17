@@ -11,7 +11,7 @@ app.get("/", (req, res)=>{
     res.send("Working...")
 })
 
-// app.use("/auth", authRoute)
+app.use("/api/auth", require("./routes/auth"))
 // app.use("/subs", subscriptionRoute)
 // app.use(articlesRoute)
 
