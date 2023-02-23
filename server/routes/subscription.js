@@ -27,8 +27,8 @@ router.post("/session", checkAuth, async (req, res) => {
         mode: "subscription",
         payment_method_types: ["card"],
         line_items: [{ price: req.body.priceId, quantity: 1 }],
-        success_url: "https://articles-suscription.onrender.com/articles",
-        cancel_url: "https://articles-suscription.onrender.com/articles-plan",
+        success_url: "https://ill-gold-narwhal-wear.cyclic.app//articles",
+        cancel_url: "https://ill-gold-narwhal-wear.cyclic.app//articles-plan",
         customer: user.customerStripeId,
       },
       {
