@@ -39,9 +39,15 @@ function ModalComp({ text, variant }) {
       let response;
 
       if (text === "Signup") {
-        response = await axios.post("/api/auth/signup", { email, password });
+        response = await axios.post(
+          "https://bored-pear-beret.cyclic.app/api/auth/signup",
+          { email, password }
+        );
       } else {
-        response = await axios.post("/api/auth/login", { email, password });
+        response = await axios.post(
+          "https://bored-pear-beret.cyclic.app/api/auth/login",
+          { email, password }
+        );
       }
 
       if (response.data) {
