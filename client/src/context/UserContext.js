@@ -24,7 +24,7 @@ const UserProvider = ({ children }) => {
       const { data: response } = await axios.get(
         "https://bored-pear-beret.cyclic.app/api/auth/me"
       );
-      console.log(response);
+      // console.log(response);
       if (response && response._id) {
         setUser({
           data: {
