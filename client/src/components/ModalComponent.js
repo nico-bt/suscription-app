@@ -1,84 +1,78 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
-import { Modal, Button, InputGroup, FormControl, Alert } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import React, { useContext, useState } from "react"
+import axios from "axios"
+import { Modal, Button, InputGroup, FormControl, Alert } from "react-bootstrap"
+import Spinner from "react-bootstrap/Spinner"
+import { useNavigate } from "react-router-dom"
+import { UserContext } from "../context/UserContext"
 
 function ModalComp({ text, variant }) {
-  const [show, setShow] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [user, setUser] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext)
 
   const handleClose = () => {
-    setShow(false);
-    setError("");
-    setEmail("");
-    setPassword("");
-  };
+    setShow(false)
+    setError("")
+    setEmail("")
+    setPassword("")
+  }
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true)
 
   const handleClick = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (!email || !password) {
-      setError("Please fill in both fields");
-      return;
+      setError("Please fill in both fields")
+      return
     }
 
     try {
-      setError("");
-      setIsLoading(true);
-      let response;
+      setError("")
+      setIsLoading(true)
+      let response
 
       if (text === "Signup") {
-        response = await axios.post(
-          "https://bored-pear-beret.cyclic.app/api/auth/signup",
-          { email, password }
-        );
+        response = await axios.post(`${process.env.BASE_URL}/api/auth/signup`, { email, password })
       } else {
-        response = await axios.post(
-          "https://bored-pear-beret.cyclic.app/api/auth/login",
-          { email, password }
-        );
+        response = await axios.post(`${process.env.BASE_URL}/api/auth/login`, { email, password })
       }
 
       if (response.data) {
-        const { id, email, customerStripeId, token } = response.data;
+        const { id, email, customerStripeId, token } = response.data
 
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token)
         // Set the token in the header for all the axios requests
-        axios.defaults.headers.common["authorization"] = `Bearer ${token}`;
+        axios.defaults.headers.common["authorization"] = `Bearer ${token}`
 
         setUser({
           data: { id, email, customerStripeId },
           error: null,
           loading: false,
-        });
+        })
 
-        setError("");
-        setEmail("");
-        setPassword("");
-        setIsLoading(false);
+        setError("")
+        setEmail("")
+        setPassword("")
+        setIsLoading(false)
 
-        navigate("/articles");
+        navigate("/articles")
       }
     } catch (err) {
       if (Array.isArray(err.response?.data)) {
-        setError(err.response?.data[0]);
+        setError(err.response?.data[0])
       } else {
-        setError(err.response?.data || err.message);
+        setError(err.response?.data || err.message)
       }
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <>
@@ -102,11 +96,7 @@ function ModalComp({ text, variant }) {
 
             <InputGroup className="mb-3">
               <InputGroup.Text>Email</InputGroup.Text>
-              <FormControl
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <FormControl type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </InputGroup>
 
             <InputGroup className="mb-3">
@@ -143,7 +133,7 @@ function ModalComp({ text, variant }) {
         </form>
       </Modal>
     </>
-  );
+  )
 }
 
-export default ModalComp;
+export default ModalComp

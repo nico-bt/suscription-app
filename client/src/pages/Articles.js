@@ -43,7 +43,7 @@ function Articles() {
   const getArticles = async () => {
     setIsLoading(true)
     try {
-      const { data: response } = await axios.get("https://bored-pear-beret.cyclic.app/api/articles")
+      const { data: response } = await axios.get(`${process.env.BASE_URL}/api/articles`)
       /* console.log(response) */
       setArticles(response)
       setIsLoading(false)
