@@ -4,6 +4,7 @@ import { Modal, Button, InputGroup, FormControl, Alert } from "react-bootstrap"
 import Spinner from "react-bootstrap/Spinner"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
+import { BASE_URL } from "../utils/data"
 
 function ModalComp({ text, variant }) {
   const [show, setShow] = useState(false)
@@ -39,9 +40,9 @@ function ModalComp({ text, variant }) {
       let response
 
       if (text === "Signup") {
-        response = await axios.post(`${process.env.BASE_URL}/api/auth/signup`, { email, password })
+        response = await axios.post(`${BASE_URL}/api/auth/signup`, { email, password })
       } else {
-        response = await axios.post(`${process.env.BASE_URL}/api/auth/login`, { email, password })
+        response = await axios.post(`${BASE_URL}/api/auth/login`, { email, password })
       }
 
       if (response.data) {

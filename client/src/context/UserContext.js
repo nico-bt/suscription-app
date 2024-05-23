@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import axios from "axios"
+import { BASE_URL } from "../utils/data"
 
 const initialState = {
   data: null,
@@ -21,7 +22,7 @@ const UserProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const { data: response } = await axios.get(`${process.env.BASE_URL}/api/auth/me`)
+      const { data: response } = await axios.get(`${BASE_URL}/api/auth/me`)
       // console.log(response);
       if (response && response._id) {
         setUser({

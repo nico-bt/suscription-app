@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import ClickeableCard from "../components/ClickeableCard"
 import Nav from "../components/Nav"
+import { BASE_URL } from "../utils/data"
 
 const CardsContainer = styled.div`
   display: grid;
@@ -43,7 +44,7 @@ function Articles() {
   const getArticles = async () => {
     setIsLoading(true)
     try {
-      const { data: response } = await axios.get(`${process.env.BASE_URL}/api/articles`)
+      const { data: response } = await axios.get(`${BASE_URL}/api/articles`)
       /* console.log(response) */
       setArticles(response)
       setIsLoading(false)

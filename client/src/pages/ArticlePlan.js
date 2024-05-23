@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Container, Button, Card } from "react-bootstrap"
 import styled from "styled-components"
+import { BASE_URL } from "../utils/data"
 
 const CardsContainer = styled.div`
   display: flex;
@@ -51,7 +52,7 @@ function ArticlesPlan() {
 
   const fetchPrices = async () => {
     try {
-      const { data: response } = await axios.get(`${process.env.BASE_URL}/api/subs/prices`)
+      const { data: response } = await axios.get(`${BASE_URL}/api/subs/prices`)
       // order by price
       response.prices.data.sort((x, y) => x.unit_amount - y.unit_amount)
       setPrices(response.prices.data)
@@ -66,7 +67,7 @@ function ArticlesPlan() {
 
   // When you click "buy" create a Stripe session and redirect to pay url
   const createSession = async (priceId) => {
-    const session = await axios.post(`${process.env.BASE_URL}/api/subs/session`, {
+    const session = await axios.post(`${BASE_URL}/api/subs/session`, {
       priceId,
     })
     // console.log(session.data.url)
